@@ -50,4 +50,4 @@ class OffsetEnum(Enum):
     N = "nanoseconds"
 
     def __str__(self) -> str:
-        return str(self.name)
+        return str(self.value)

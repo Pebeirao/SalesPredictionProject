@@ -17,6 +17,23 @@ train_models
 python3 main.py
 ```
 
+### Also u can run one Model with the following command:
+
+```
+train_arima
+```
+
+#### or
+
+```
+train_sarima
+```
+
+#### or
+
+```
+train_sarimax
+```
 ## Models can be find at the folder
 src/sales_prediction/classes/arima
 
