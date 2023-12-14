@@ -5,9 +5,9 @@ import pandas as pd
 import pmdarima as pm
 from pandas import DataFrame, date_range, DateOffset
 
-from settings import ROOT_DIR
-from src.sales_prediction.constants.arimaConstants import ArimaModels
-from src.sales_prediction.constants.offsetconstants import OffsetEnum
+from sales_prediction import ROOT_DIR
+from sales_prediction.constants.arimaConstants import ArimaModels
+from sales_prediction.constants.offsetconstants import OffsetEnum
 
 
 class ArimaTraining:
@@ -81,13 +81,14 @@ class ArimaTraining:
             lower_series.index, lower_series, upper_series, color="k", alpha=0.15
         )
 
-        plt.title(f"{self.model} - Forecast of {self.predicted_column} Per {str(frequency)}")
-        plt.show()
+        plt.title(
+            f"{self.model} - Forecast of {self.predicted_column} Per {str(frequency)}"
+        )
         plt.savefig(
             pathlib.Path(
                 ROOT_DIR,
-
                 "images",
                 f"{self.model}_{self.predicted_column}_forecast.png",
             )
         )
+        plt.show()

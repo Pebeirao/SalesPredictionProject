@@ -2,10 +2,10 @@ import pathlib
 
 from pandas import read_csv, merge, to_datetime
 
-from settings import ROOT_DIR
-from src.sales_prediction.classes.arima.arimaMain import ArimaTraining
-from src.sales_prediction.constants.arimaConstants import ArimaModels
-from src.sales_prediction.script_internal.transformation import (
+from sales_prediction import ROOT_DIR
+from sales_prediction.classes.arima.arimaMain import ArimaTraining
+from sales_prediction.constants.arimaConstants import ArimaModels
+from sales_prediction.script_internal.transformation import (
     create_day_column,
     summarise_sales_train_validation,
 )
@@ -13,17 +13,19 @@ from src.sales_prediction.script_internal.transformation import (
 
 def main():
     sales_calendar = read_csv(
-        pathlib.Path(ROOT_DIR,
-
+        pathlib.Path(
+            ROOT_DIR,
             "data",
-            "raw", "calendar_afcs2023.csv",
+            "raw",
+            "calendar_afcs2023.csv",
         )
     )
     sales_train_validation = read_csv(
-        pathlib.Path(ROOT_DIR,
-
+        pathlib.Path(
+            ROOT_DIR,
             "data",
-            "raw", "sales_train_validation_afcs2023.csv",
+            "raw",
+            "sales_train_validation_afcs2023.csv",
         )
     )
 
@@ -56,6 +58,7 @@ def main():
     sarimax_fitted.train_model("sales")
     sarimax_fitted.forecast(periods=300)
     sarimax_fitted.plot_forecast()
+
 
 if __name__ == "__main__":
     main()
