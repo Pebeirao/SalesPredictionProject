@@ -44,19 +44,19 @@ def main():
 
     arima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.ARIMA)
     arima_fitted.train_model("sales")
-    arima_fitted.forecast(periods=300)
+    arima_fitted.forecast(periods=28)
     arima_fitted.plot_forecast()
 
     sarima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.SARIMA)
     sarima_fitted.train_model("sales")
-    sarima_fitted.forecast(periods=300)
+    sarima_fitted.forecast(periods=28)
     sarima_fitted.plot_forecast()
 
     sarimax_fitted = ArimaTraining(
         sales_byday_with_date, ArimaModels.SARIMAX, sales_byday_with_date["wday"]
     )
     sarimax_fitted.train_model("sales")
-    sarimax_fitted.forecast(periods=300)
+    sarimax_fitted.forecast(periods=28)
     sarimax_fitted.plot_forecast()
 
 

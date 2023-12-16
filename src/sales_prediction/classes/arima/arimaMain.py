@@ -63,9 +63,9 @@ class ArimaTraining:
 
     def plot_forecast(self, frequency: OffsetEnum = OffsetEnum.D):
         index_of_fc = date_range(
-            DateOffset().rollforward(dt=self.train_data.index[-1]),
+            start=self.train_data.index[-1] + DateOffset(days=1),
             periods=self.periods,
-            freq=str(frequency),
+            freq='D',
         )
 
         # make series for plotting purpose
@@ -75,7 +75,7 @@ class ArimaTraining:
 
         # Plot
         plt.figure(figsize=(15, 7))
-        plt.plot(self.train_data[self.predicted_column], color="#1f76b4")
+        plt.plot(self.train_data[self.predicted_column].iloc[-365:], color="#1f76b4")
         plt.plot(fitted_series, color="darkgreen")
         plt.fill_between(
             lower_series.index, lower_series, upper_series, color="k", alpha=0.15
