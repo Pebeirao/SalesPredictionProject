@@ -41,19 +41,21 @@ def main():
 
     # set the index to be the date
     sales_byday_with_date = sales_byday_with_date.set_index(["date"])
+    
+    # print(sales_byday_with_date.loc[:, 'event_name_1':'event_type_2'].fillna(0).head())
 
-    arima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.ARIMA)
-    arima_fitted.train_model("sales")
-    arima_fitted.forecast(periods=28)
-    arima_fitted.plot_forecast()
+    # arima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.ARIMA)
+    # arima_fitted.train_model("sales")
+    # arima_fitted.forecast(periods=28)
+    # arima_fitted.plot_forecast()
 
-    sarima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.SARIMA)
-    sarima_fitted.train_model("sales")
-    sarima_fitted.forecast(periods=28)
-    sarima_fitted.plot_forecast()
+    # sarima_fitted = ArimaTraining(sales_byday_with_date, ArimaModels.SARIMA)
+    # sarima_fitted.train_model("sales")
+    # sarima_fitted.forecast(periods=28)
+    # sarima_fitted.plot_forecast()
 
     sarimax_fitted = ArimaTraining(
-        sales_byday_with_date, ArimaModels.SARIMAX, sales_byday_with_date["wday"]
+        sales_byday_with_date, ArimaModels.SARIMAX, sales_byday_with_date.loc[:, 'event_name_1':'event_type_2'].fillna(0)
     )
     sarimax_fitted.train_model("sales")
     sarimax_fitted.forecast(periods=28)
